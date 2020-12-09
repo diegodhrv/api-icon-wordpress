@@ -48,7 +48,6 @@ function generateViewFile($mode = 0) {
     header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
   }
   readfile($uploadDir.'/css/icons.css');
-  exit;
 }
 
 function api_get_icons($request) {
