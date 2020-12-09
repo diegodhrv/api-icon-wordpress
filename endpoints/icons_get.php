@@ -41,15 +41,14 @@ function generateViewFile($mode = 0) {
   $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
   fwrite($arquivo, $conteudo);
   fclose($arquivo);
-  /* if($mode == 1) {
+  if($mode == 1) {
     $tipo = 'text/css';
     header("Content-Type: ".$tipo);
     header("Content-Length: ".filesize($uploadDir.'/css/icons.css'));
     header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
   }
   readfile($uploadDir.'/css/icons.css');
-  exit; */
-  return rest_ensure_response($uploadDir);
+  exit;
 }
 
 function api_get_icons($request) {
