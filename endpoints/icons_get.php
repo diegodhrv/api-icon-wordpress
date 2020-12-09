@@ -2,7 +2,7 @@
 
 function generateViewFile($mode = 0) {
   $posts = array();
-  $uploadDir = get_template_directory();
+  $uploadDir = "\/home\/bitnami\/apps\/wordpress\/htdocs\/wp-content\/themes\/api-site-roit";
   $args = array('post_type' => 'icons', 'post_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC',);
   $loop = new WP_Query($args);
 
@@ -38,7 +38,7 @@ function generateViewFile($mode = 0) {
     $conteudo .= ".icon-r-".$value['name']." {\n mask-image: url('".$value['base64']."');\n -webkit-mask-image: url('".$value['base64']."');\n}\n\n";
   }
 
-  /* $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
+  $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
   fwrite($arquivo, $conteudo);
   fclose($arquivo);
   if($mode == 1) {
@@ -48,12 +48,11 @@ function generateViewFile($mode = 0) {
     header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
   }
   readfile($uploadDir.'/css/icons.css');
-  exit; */
-  return rest_ensure_response($uploadDir);
+  exit;
 }
 
 function api_get_icons($request) {
-  return generateViewFile(1);
+  generateViewFile(1);
 }
 function api_view_icons($request) {
   generateViewFile();
