@@ -2,7 +2,7 @@
 
 function generateViewFile($mode = 0) {
   $posts = array();
-  $uploadDir = "\/home\/bitnami\/apps\/wordpress\/htdocs\/wp-content\/themes\/api-site-roit";
+  $uploadDir = get_template_directory();
   $args = array('post_type' => 'icons', 'post_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC',);
   $loop = new WP_Query($args);
 
@@ -48,6 +48,7 @@ function generateViewFile($mode = 0) {
     header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
   }
   readfile($uploadDir.'/css/icons.css');
+  exit;
 }
 
 function api_get_icons($request) {
