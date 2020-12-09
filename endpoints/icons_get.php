@@ -2,7 +2,7 @@
 
 function generateViewFile($mode = 0) {
   $posts = array();
-  $uploadDir = get_template_directory();
+  $themeDir = get_template_directory();
   $args = array('post_type' => 'icons', 'post_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC',);
   $loop = new WP_Query($args);
 
@@ -38,16 +38,16 @@ function generateViewFile($mode = 0) {
     $conteudo .= ".icon-r-".$value['name']." {\n mask-image: url('".$value['base64']."');\n -webkit-mask-image: url('".$value['base64']."');\n}\n\n";
   }
 
-  $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
+  $arquivo = fopen($themeDir.'/css/icons.css', 'w');
   fwrite($arquivo, $conteudo);
   fclose($arquivo);
   if($mode == 1) {
     $tipo = 'text/css';
     header("Content-Type: ".$tipo);
-    header("Content-Length: ".filesize($uploadDir.'/css/icons.css'));
-    header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
+    header("Content-Length: ".filesize($themeDir.'/css/icons.css'));
+    header("Content-Disposition: attachment; filename=".basename($themeDir.'/css/icons.css'));
   }
-  readfile($uploadDir.'/css/icons.css');
+  readfile($themeDir.'/css/icons.css');
   exit;
 }
 
