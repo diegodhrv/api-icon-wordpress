@@ -1,13 +1,13 @@
 <?php
 // Remove as rotas definidas pelo WordPress
-/* remove_action('rest_api_init', 'create_initial_rest_routes', 99); */
+remove_action('rest_api_init', 'create_initial_rest_routes', 99);
 
 // Remove as rotas especificas definidas pelo WordPress
-add_filter('rest_endpoints', function ($endpoints) {
+/* add_filter('rest_endpoints', function ($endpoints) {
   $endpoints['/wp/v2/users'];
   $endpoints['/wp/v2/users/(?P<id>[\d]+)'];
   return $endpoints;
-});
+}); */
 
 $dirbase = get_template_directory();
 require_once $dirbase . '/endpoints/icons_post.php';
