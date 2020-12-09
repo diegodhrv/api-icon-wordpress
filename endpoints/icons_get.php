@@ -2,7 +2,7 @@
 
 function generateViewFile($mode = 0) {
   $posts = array();
-  $uploadDir = wp_get_upload_dir()['basedir'];
+  $uploadDir = get_template_directory();
   $args = array('post_type' => 'icons', 'post_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC',);
   $loop = new WP_Query($args);
 
@@ -38,10 +38,10 @@ function generateViewFile($mode = 0) {
     $conteudo .= ".icon-r-".$value['name']." {\n mask-image: url('".$value['base64']."');\n -webkit-mask-image: url('".$value['base64']."');\n}\n\n";
   }
 
-  $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
+  /* $arquivo = fopen($uploadDir.'/css/icons.css', 'w');
   fwrite($arquivo, $conteudo);
   fclose($arquivo);
-  /* if($mode == 1) {
+  if($mode == 1) {
     $tipo = 'text/css';
     header("Content-Type: ".$tipo);
     header("Content-Length: ".filesize($uploadDir.'/css/icons.css'));
@@ -53,7 +53,7 @@ function generateViewFile($mode = 0) {
 }
 
 function api_get_icons($request) {
-    return generateViewFile(1);
+  return generateViewFile(1);
 }
 function api_view_icons($request) {
     generateViewFile();
