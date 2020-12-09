@@ -42,7 +42,7 @@ function generateViewFile($mode = 0) {
   fwrite($arquivo, $conteudo);
   fclose($arquivo);
   if($mode == 1) {
-    $tipo = 'application/css';
+    $tipo = 'text/css';
     header("Content-Type: ".$tipo);
     header("Content-Length: ".filesize($uploadDir.'/css/icons.css'));
     header("Content-Disposition: attachment; filename=".basename($uploadDir.'/css/icons.css'));
